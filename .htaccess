@@ -1,4 +1,5 @@
 RewriteEngine On
+
 # Don't specify RewriteBase to make it more flexible
 # RewriteBase /PHP-MVC/public/
 # RewriteBase /
@@ -10,5 +11,5 @@ Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Send everything to index.php with the complete path
+# Send everything to /index.php with the complete path
 RewriteRule ^(.*)$ index.php [QSA,L]
