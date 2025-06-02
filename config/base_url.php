@@ -22,9 +22,9 @@ class BaseUrl {
         // Get the script directory path
         $scriptPath = dirname($_SERVER['SCRIPT_NAME']);
         
-        // Remove /public from the path if it exists (for MVC structure)
-        $scriptPath = str_replace('/public', '', $scriptPath);
-        $scriptPath = str_replace('\\public', '', $scriptPath); // Windows compatibility
+        // Remove /src from the path if it exists (for MVC structure)
+        $scriptPath = str_replace('/src', '', $scriptPath);
+        $scriptPath = str_replace('\\src', '', $scriptPath); // Windows compatibility
         
         // Clean up the path
         $scriptPath = rtrim($scriptPath, '/\\');
@@ -48,7 +48,7 @@ class BaseUrl {
      * @return string
      */
     public static function getPublic() {
-        return self::getWithSlash() . 'public/';
+        return self::getWithSlash() . 'src/';
     }
     
     /**

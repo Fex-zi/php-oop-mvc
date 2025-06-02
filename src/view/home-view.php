@@ -1,6 +1,6 @@
-<?php include('partials/head.php'); ?>
+<?php include(__DIR__ . '/partials/head.php'); ?>
   <body>
-<?php include('partials/nav.php'); ?>
+<?php include(__DIR__ . '/partials/nav.php'); ?>
 
 <main class="container">
   <div class="bg-light p-5 rounded">

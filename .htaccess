@@ -1,15 +1,26 @@
 RewriteEngine On
 
-# Don't specify RewriteBase to make it more flexible
-# RewriteBase /PHP-MVC/public/
-# RewriteBase /
-
-# DISABLE DIRECTORY INDEXES
+# Block directory browsing
 Options -Indexes
 
-# Don't rewrite if the file or directory exists
+# Block access to sensitive directories and files
+RewriteRule ^(src|config)/ - [F,L]
+
+# Block access to sensitive file types
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|git)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# URL Rewriting - all requests go through index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Send everything to /index.php with the complete path
 RewriteRule ^(.*)$ index.php [QSA,L]

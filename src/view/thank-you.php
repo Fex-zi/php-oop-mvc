@@ -1,12 +1,12 @@
-<?php include('partials/head.php'); ?>
+<?php include(__DIR__ . '/partials/head.php'); ?>
   <body>
      
-<?php include('partials/nav.php'); ?>
+<?php include(__DIR__ . '/partials/nav.php'); ?>
 
 <main class="container">
   <div class="bg-light p-5 rounded">
-    <h1>About Us</h1>
-    <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
+    <h1>Thanks You</h1>
+    <p class="lead">Thanks For Contacting us, we will reply soon.</p>
     <a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/5.0/components/navbar/" role="button">View navbar docs &raquo;</a>
   </div>
 </main>
