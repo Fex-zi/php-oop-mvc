@@ -1,7 +1,7 @@
 <?php 
 declare(strict_types=1);
 
-namespace model;
+namespace models\find;
 
 class Product {
     private $freeShipping = false;

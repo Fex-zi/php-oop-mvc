@@ -8,6 +8,7 @@ session_start([
     'cookie_samesite' => 'Strict'
 ]);
 
+
 // CSRF Protection
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -35,7 +36,7 @@ spl_autoload_register(function (string $class): void {
     $basePath = realpath(__DIR__ . '/../src/');
     
     if ($realFile && $basePath && strpos($realFile, $basePath) === 0 && file_exists($realFile)) {
-        require $realFile;
+        require_once $realFile;
     }
 });
 
@@ -61,10 +62,11 @@ $request_uri = preg_replace('/[^a-zA-Z0-9\-_]/', '', $request_uri);
 
 // Define available routes with absolute paths
 $routes = [
-    'home' => __DIR__ . '/../src/controller/home.php',
-    'about' => __DIR__ . '/../src/controller/about-us.php',
-    'contact' => __DIR__ . '/../src/controller/contact-us.php',
-    'product' => __DIR__ . '/../src/model/Product.php',
+    'home' => __DIR__ . '/../src/controllers/home.php',
+    'about' => __DIR__ . '/../src/controllers/about-us.php',
+    'contact' => __DIR__ . '/../src/controllers/contact-us.php',
+    'admin' => __DIR__ . '/../src/controllers/admin/admin.php',
+    '404' => __DIR__ . '/../src/views/status-pages/404.php',
 ];
 
 // Check if the route exists and is safe
@@ -80,10 +82,10 @@ if (array_key_exists($request_uri, $routes)) {
     } else {
         // File not found or outside allowed directory, show 404
         http_response_code(404);
-        require(__DIR__ . '/../src/view/status-pages/404.php');
+        require(__DIR__ . '/../src/views/status-pages/404.php');
     }
 } else {
     // Route not found, show 404
     http_response_code(404);
-    require(__DIR__ . '/../src/view/status-pages/404.php');
+    require(__DIR__ . '/../src/views/status-pages/404.php');
 }

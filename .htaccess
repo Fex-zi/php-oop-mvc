@@ -3,13 +3,14 @@ RewriteEngine On
 # Block directory browsing
 Options -Indexes
 
-# Block access to sensitive directories and files
-RewriteRule ^(src|config)/ - [F,L]
+# Block access to sensitive directories and files - redirect to 404 (not forbidden)
+RewriteRule ^(src|config|public)/ - [R=404,L]
 
-# Block access to sensitive file types
+
+# Block access to sensitive file types - redirect to 404
 <FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|git)$">
-    Order Allow,Deny
-    Deny from all
+    RewriteEngine On
+    RewriteRule .* - [R=404,L]
 </FilesMatch>
 
 # Security headers

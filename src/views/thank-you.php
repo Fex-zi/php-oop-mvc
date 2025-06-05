@@ -7,7 +7,7 @@
   <div class="bg-light p-5 rounded">
     <h1>Thanks You</h1>
     <p class="lead">Thanks For Contacting us, we will reply soon.</p>
-    <a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/5.0/components/navbar/" role="button">View navbar docs &raquo;</a>
+    <a class="btn btn-lg btn-primary" href="https://fexzitech.com" role="button">View navbar docs &raquo;</a>
   </div>
 </main>
 
