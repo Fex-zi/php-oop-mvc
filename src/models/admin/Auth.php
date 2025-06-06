@@ -2,8 +2,11 @@
 
 namespace models\admin;
 use models\find\Find;
+use models\traits\LoginTrait;
 
 class Auth extends Find{
+    
+    use LoginTrait;
 
     public function isAdmin(){
         return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
@@ -17,13 +20,8 @@ class Auth extends Find{
         include __DIR__ .'/../../views/status-pages/404.php';
     }
 
-    public function doLogin($username, $password){
-        if($_POST['action'] ==='login'){
-        $username = $_POST['email'];
-        $password = $_POST['password'];
-
-
-        }
+    public function loginAdmin($username = null, $password = null){
+        return $this->doLogin($username, $password, 1);
     }
+
 }
- 

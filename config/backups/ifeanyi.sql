@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2025 at 07:33 PM
+-- Generation Time: Jun 06, 2025 at 06:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -75,8 +75,11 @@ INSERT INTO `routes` (`id`, `module`, `action`, `entity_id`, `pretty_url`) VALUE
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `email` varchar(225) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `role` tinyint(2) NOT NULL DEFAULT 0,
   `password` varchar(255) NOT NULL,
   `password_hash` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -85,8 +88,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `password_hash`) VALUES
-(1, 'Admin', 'admin', '$2y$10$oFov9DNlG1Au4mTaEjeUROlJNiV2PKF1T5.fGqKAKBp05e9uxdioi', '');
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `username`, `role`, `password`, `password_hash`) VALUES
+(1, 'fexzi87@gail.com', 'Ifeanyi', 'Ojukwu', 'admin', 1, '$2y$10$oFov9DNlG1Au4mTaEjeUROlJNiV2PKF1T5.fGqKAKBp05e9uxdioi', '');
 
 --
 -- Indexes for dumped tables
@@ -99,6 +102,19 @@ ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `routes`
+--
+ALTER TABLE `routes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -107,6 +123,12 @@ ALTER TABLE `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

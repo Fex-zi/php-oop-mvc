@@ -1,0 +1,24 @@
+<?php include(__DIR__ . '/../partials/head.php'); ?>
+<body>
+    
+    
+<?php include(__DIR__ . '/../partials/nav.php'); ?>
+
+
+<main class="container">
+  <div class="bg-light p-5 rounded">
+    <h1>Welcome Admin</h1>
+    <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
+    <a class="btn btn-lg btn-primary" href="https://fexzitech.com" role="button">Admin Dashboard &raquo;</a>
+    <h1>Welcome, Admin!</h1>
+        <p>User ID: <?= $_SESSION['user_id'] ?? 'N/A' ?></p>
+        <a href="admin?action=logout">Logout</a>
+  </div>
+</main>
+
+
+<script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+      
+  </body>
+</html>

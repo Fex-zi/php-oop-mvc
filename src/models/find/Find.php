@@ -45,17 +45,25 @@ class Find extends Connect {
         
     }
 
-    public function findby($username){
-
-        $sql =  'SELECT * FROM users where username = :username';
-
+    public function findby($identifier){
+        $sql = 'SELECT * FROM users WHERE username = :username OR email = :email';
+        
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['username'=>$username]);
-
+        $stmt->execute([
+            'username' => $identifier,
+            'email' => $identifier
+        ]);
+        
         return $stmt->fetch();
-
-
-
+    }
+    
+    public function findUserById($id){
+        $sql = 'SELECT * FROM users WHERE id = :id';
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        
+        return $stmt->fetch();
     }
 }
 

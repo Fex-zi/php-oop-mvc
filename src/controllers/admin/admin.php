@@ -1,18 +1,50 @@
-
 <?php 
 
 use models\admin\Auth;
 
-$check = new Auth();
+$auth = new Auth();
 
-if($check->isAdmin()){
-    // User is already logged in as admin - show admin dashboard or redirect
-    echo '<h1>Admin Dashboard</h1>';
-    echo '<p>Welcome, Admin!</p>';
-    echo '<a href="admin?action=logout">Logout</a>';
-} else {
-    // User is not admin - show login form
-    $check->showLogin();
+// Handle different actions
+switch($action) {
+    case 'logout':
+        $result = $auth->logout();
+        if($result['success']) {
+            echo '<p>' . $result['message'] . '</p>';
+            echo '<a href="admin">Return to Login</a>';
+        }
+        break;
+        
+    case 'login':
+        $message = '';
+        $messageType = '';
+        
+        if($_POST) {
+            $result = $auth->loginAdmin();
+            if($result['success']) {
+                include __DIR__ .'/../../views/admin/profile.php';
+                exit;
+            } else {
+                $message = $result['message'];
+                $messageType = 'error';
+            }
+        }
+        
+        // Include login view with message variables
+        include __DIR__ .'/../../views/admin/login.php';
+        break;
+        
+    default:
+        // Check if admin is already logged in
+        if($auth->isAdmin()) {
+            // Show admin dashboard
+            include __DIR__ .'/../../views/admin/profile.php';
+            
+        } else {
+            // Show login form with empty message variables
+            $message = '';
+            $messageType = '';
+            include __DIR__ .'/../../views/admin/login.php';
+        }
+        break;
 }
-
 ?>
